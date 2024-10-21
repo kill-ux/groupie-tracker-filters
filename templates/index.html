@@ -5,6 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Artistes</title>
     <link rel="stylesheet" href="css/style.css" />
+
+    <script>
+      function updateRange(){
+        
+        let FromCreationDate = document.getElementsByName('FromCreationDate')[0]
+        let ToCreationDate = document.getElementsByName('ToCreationDate')[0]
+        let FromFirsetAlbum = document.getElementsByName('FromFirsetAlbum')[0]
+        let ToFirsetAlbum = document.getElementsByName('ToFirsetAlbum')[0]
+        if (FromCreationDate.value > ToCreationDate.value){
+          ToCreationDate.value = FromCreationDate.value
+        }
+        if (FromFirsetAlbum.value > ToFirsetAlbum.value){
+          ToFirsetAlbum.value = FromFirsetAlbum.value
+        }
+        document.getElementById('value1').textContent = FromCreationDate.value
+        document.getElementById('value2').textContent = ToCreationDate.value
+        document.getElementById('FirsetAlbumvalue1').textContent = FromFirsetAlbum.value
+        document.getElementById('FirsetAlbumvalue2').textContent = ToFirsetAlbum.value
+      }
+    </script>
   </head>
   <body>
     <h1>Groupie Tracker</h1>
@@ -24,7 +44,7 @@
               min="1900"
               max="2025"
               value="1950"
-              oninput="document.getElementById('value1').textContent = this.value"
+              oninput="updateRange()"
             />
             <span id="value1">1950</span>
           </div>
@@ -38,7 +58,7 @@
               min="1900"
               max="2025"
               value="2024"
-              oninput="document.getElementById('value2').textContent = this.value"
+              oninput="updateRange()"
             />
             <span id="value2">2024</span>
           </div>
@@ -60,7 +80,7 @@
               min="1900"
               max="2025"
               value="1950"
-              oninput="document.getElementById('FirsetAlbumvalue1').textContent = this.value"
+              oninput="updateRange()"
             />
             <span id="FirsetAlbumvalue1">1950</span>
            
@@ -74,7 +94,7 @@
             min="1900"
             max="2025"
             value="2024"
-            oninput="document.getElementById('FirsetAlbumvalue2').textContent = this.value"
+            oninput="updateRange()"
           />
           <span id="FirsetAlbumvalue2">2024</span>  
           </div>
@@ -131,5 +151,8 @@
       </div>
       {{ end }}
     </div>
+    <script>
+      updateRange()
+    </script>
   </body>
 </html>
