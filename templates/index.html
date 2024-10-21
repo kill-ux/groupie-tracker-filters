@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Artistes</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <h1>Groupie Tracker</h1>
+    <div class="divDetails">
+      <details class="detailsForm">
+        <summary>Filters</summary>
+        <form class="filterForm" action="/" method="get">
+          <div>
+            <label for="">CreationDate</label>
+          </div>
+          <div>
+            <label for="">from :</label>
+            <input
+              type="range"
+              name="FromCreationDate"
+              id="range1"
+              min="1900"
+              max="2025"
+              value="1950"
+              oninput="document.getElementById('value1').textContent = this.value"
+            />
+            <span id="value1">1950</span>
+          </div>
+          <div>
+            <label for="">To :</label>
+
+            <input
+              type="range"
+              name="ToCreationDate"
+              id="range2"
+              min="1900"
+              max="2025"
+              value="2024"
+              oninput="document.getElementById('value2').textContent = this.value"
+            />
+            <span id="value2">2024</span>
+          </div>
+          
+            <div>
+              <hr class="hr">
+            </div>
+          
+          <div>
+            <label for="">FirsetAlbum</label>
+          </div>
+         
+          <div>
+            <label for="">from :</label>
+            <input
+              type="range"
+              name="FromFirsetAlbum"
+              id="FromFirsetAlbum"
+              min="1900"
+              max="2025"
+              value="1950"
+              oninput="document.getElementById('FirsetAlbumvalue1').textContent = this.value"
+            />
+            <span id="FirsetAlbumvalue1">1950</span>
+           
+          </div>
+          <div>
+            <label for="">To :</label>
+            <input
+            type="range"
+            name="ToFirsetAlbum"
+            id="ToFirsetAlbum"
+            min="1900"
+            max="2025"
+            value="2024"
+            oninput="document.getElementById('FirsetAlbumvalue2').textContent = this.value"
+          />
+          <span id="FirsetAlbumvalue2">2024</span>  
+          </div>
+          <div>
+            <hr class="hr">
+          </div>
+          <div>
+            <label for="">Members</label>
+            <label for="1">1</label>
+            <input type="checkbox" name="members" id="1" value="1" />
+
+            <label for="2">2</label>
+            <input type="checkbox" name="members" id="2" value="2" />
+
+            <label for="3">3</label>
+            <input type="checkbox" name="members" id="3" value="3" />
+
+            <label for="4">4</label>
+            <input type="checkbox" name="members" id="4" value="4" />
+
+            <label for="5">5</label>
+            <input type="checkbox" name="members" id="5" value="5" />
+
+            <label for="6">6</label>
+            <input type="checkbox" name="members" id="6" value="6" />
+
+            <label for="7">7</label>
+            <input type="checkbox" name="members" id="7" value="7" />
+            <label for="8">8</label>
+            <input type="checkbox" name="members" id="8" value="8" />
+          </div>
+
+          <div>
+            <input type="text" name="local" id="local" />
+          </div>
+          <div>
+            <input type="submit" name="filter" value="filter" />
+            <a href="/">Reset</a>
+          </div>
+        </form>
+      </details>
+    </div>
+    <div class="cards">
+      {{ range .Filters }}
+      <div class="card" id="{{.Id}}">
+        <a class="hrefArtist" href="/artist/{{.Id}}">
+          <img class="image" src="{{.Image}}" alt="" />
+          <h3 class="name">{{.Name}}</h3>
+          <p class="CreationDate">
+            CreationDate: <span class="date">{{.CreationDate}}</span>
+          </p>
+        </a>
+      </div>
+      {{ end }}
+    </div>
+  </body>
+</html>
