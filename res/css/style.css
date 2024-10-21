@@ -11,6 +11,7 @@ body {
   padding: 0;
   color: #eeeeee;
   padding-top: 10px;
+  background: url(axiom-pattern.png) fixed;
   background-color: #131417;
 }
 
@@ -212,8 +213,8 @@ details summary {
 
 /* Base styles for the range input */
 input[type="range"] {
-  -webkit-appearance: none;
-  width: 300px;
+  appearance: none;
+  width: 70%;
   height: 10px;
   border: 1px solid #00adb5;
   background: #00acb52f;
@@ -224,12 +225,15 @@ input[type="range"] {
 
 /* Style the thumb */
 input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none; /* Remove default styling */
-  width: 20px; /* Thumb width */
-  height: 20px; /* Thumb height */
+  appearance: none;
+  width: 18px; /* Thumb width */
+  height: 18px; /* Thumb height */
   border-radius: 50%; /* Round thumb */
-  background: #00adb5; /* Thumb color */
+  /* background: #00adb5;  */
+  background: black;
+  border: 1px solid whitesmoke;
   cursor: pointer; /* Pointer cursor */
+  box-shadow: 0 0 10px black;
 }
 /* Hover effect */
 input[type="range"]:hover {
@@ -250,16 +254,75 @@ input[type="range"]:hover {
   margin: 10px;
 }
 .detailsForm div {
-  margin: 10px 20px;
+  margin: 5px 40px;
 }
 
 .filterForm {
   margin: 30px auto;
   border: 2px solid rgba(56, 56, 56, 0.829);
   border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.116);
+  backdrop-filter: blur(1px);
+  box-shadow: 0px 0px 10px rgb(141, 141, 141);
+  width: 50vw;
+  padding: 5px;
+  font-family: sans-serif;
 }
 
+@media (max-width: 700px) {
+  .filterForm {
+    width: 90vw;
+  }
+  .detailsForm div {
+    margin: 5px 3px;
+  }
+  .rangeGroup {
+    flex-wrap: wrap;
+  }
+}
 .hr {
-  border: 1px solid rgb(107, 111, 112) ;
-  margin: 20px auto;
+  border: 1px solid rgb(107, 111, 112);
+  margin: 15px auto;
+}
+
+.btns {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 10px !important;
+}
+.btns input {
+  padding: 4px 20px;
+  font-size: medium;
+  background-color: rgba(245, 245, 245, 0.685);
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid black;
+  color: black;
+}
+.btns a {
+  padding: 4px 20px;
+  font-size: medium;
+  text-decoration: none;
+  color: white;
+  border: 1px solid rgba(245, 245, 245, 0.411);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.rangeGroup {
+  display: flex;
+  justify-content: space-around;
+}
+
+input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+}
+
+input[type="text"] {
+  margin: 5px;
+  height: 20px;
+  padding: 4px 4px;
+  border: none;
+  border-radius: 4px;
 }

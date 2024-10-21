@@ -11,7 +11,7 @@ func HandelFilter(res http.ResponseWriter, req *http.Request) {
 		Error(res, 405, "Method Not Allowed")
 	}
 	filter := req.FormValue("filter")
-	if filter == "filter" {
+	if filter == "Filter" {
 		Data.Filters = nil
 		FromCreationDate := req.FormValue("FromCreationDate")
 		ToCreationDate := req.FormValue("ToCreationDate")
