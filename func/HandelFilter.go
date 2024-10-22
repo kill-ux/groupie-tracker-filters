@@ -11,6 +11,11 @@ func HandelFilter(res http.ResponseWriter, req *http.Request) {
 		Error(res, 405, "Method Not Allowed")
 	}
 	filter := req.FormValue("filter")
+	req.ParseForm()
+	if len(req.Form) > 0 && (len(filter) == 0 || (len(filter) > 0 && filter != "Filter")) {
+		Error(res, 400, "Oops!! Bad Request")
+		return
+	}
 	if filter == "Filter" {
 		Data.Filters = nil
 		FromCreationDate := req.FormValue("FromCreationDate")
@@ -20,40 +25,41 @@ func HandelFilter(res http.ResponseWriter, req *http.Request) {
 		local := req.FormValue("local")
 		local = strings.ReplaceAll(local, ", ", "-")
 		local = strings.ToLower(local)
-		req.ParseForm()
+		
 		Members := req.Form["members"]
-		for i, artist := range Data.Arts {
-			Form, err := strconv.Atoi(FromCreationDate)
-			if err != nil {
-				Error(res, 400, "Oops!! Bade Request")
-				return
-			}
-			To, err := strconv.Atoi(ToCreationDate)
-			if err != nil {
-				Error(res, 400, "Oops!! Bade Request")
-				return
-			}
+		Form, err := strconv.Atoi(FromCreationDate)
+		if err != nil {
+			Error(res, 400, "Oops!! Bad Request")
+			return
+		}
+		To, err := strconv.Atoi(ToCreationDate)
+		if err != nil {
+			Error(res, 400, "Oops!! Bad Request")
+			return
+		}
 
-			FormAlbum, err := strconv.Atoi(FromFirsetAlbum)
-			if err != nil {
-				Error(res, 400, "Oops!! Bade Request")
-				return
-			}
-			ToAlbum, err := strconv.Atoi(ToFirsetAlbum)
-			if err != nil {
-				Error(res, 400, "Oops!! Bade Request")
-				return
-			}
+		FormAlbum, err := strconv.Atoi(FromFirsetAlbum)
+		if err != nil {
+			Error(res, 400, "Oops!! Bad Request")
+			return
+		}
+		ToAlbum, err := strconv.Atoi(ToFirsetAlbum)
+		if err != nil {
+			Error(res, 400, "Oops!! Bad Request")
+			return
+		}
+		for i, artist := range Data.Arts {
+			
 			FirstAlbum, err := strconv.Atoi(artist.FirstAlbum[6:])
 			if err != nil {
-				Error(res, 400, "Oops!! Bade Request")
+				Error(res, 400, "Oops!! Bad Request")
 				return
 			}
 			if (artist.CreationDate >= Form && artist.CreationDate <= To) && (FirstAlbum >= FormAlbum && FirstAlbum <= ToAlbum) {
 				for _, nMembers := range Members {
 					num, err := strconv.Atoi(nMembers)
 					if err != nil {
-						Error(res, 400, "Oops!! Bade Request")
+						Error(res, 400, "Oops!! Bad Request")
 						return
 					}
 					if num == len(artist.Members) {

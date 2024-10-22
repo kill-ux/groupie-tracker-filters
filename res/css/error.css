@@ -6,7 +6,11 @@
     height: 100vh;
 }
 
-span{
+.Error a {
     color: royalblue;
     text-decoration:underline;
+}
+
+.Error p{
+    font-family: sans-serif;
 }

@@ -47,7 +47,7 @@
         <p>Dates of each location:</p>
         <div class="concerts">
           {{ range $key,$value := .Art.Concerts.DatesLocations}}
-          <details>
+          <details class="relation">
             <summary>{{$key}}</summary>
             <div class="con">
               {{ range $value}}
