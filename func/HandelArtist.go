@@ -27,11 +27,9 @@ func HandelArtist(res http.ResponseWriter, req *http.Request) {
 	}
 	Data.Art = Data.Arts[idTemp-1]
 	var wg sync.WaitGroup
-	wg.Add(1)
+	wg.Add(3)
 	go Fetch(&wg, Data.Art.Relations, &Data.Art.Concerts)
-	wg.Add(1)
 	go Fetch(&wg, Data.Art.Locations, &Data.Art.DataLocations)
-	wg.Add(1)
 	go Fetch(&wg, Data.Art.ConcertDates, &Data.Art.DataConcertDates)
 	wg.Wait()
 	RenderPage("artist", res)
